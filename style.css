@@ -1,0 +1,28 @@
+img{
+    width: 450px;
+
+}
+
+body{
+    background-color:#c5e1a5 ;
+    text-align: center;
+}
+h1, h2, h3{
+    color:#519657 ;
+}
+p{
+    color:#183a1b ;  
+}
+button{
+    font-size: 20px;
+    width: 100px;
+    border-color: #183a1b;
+    border-radius: 25px;
+    background-color: #aed581;
+    color: #183a1b;
+
+}
+div{
+   
+    background-color: #e8fad3;
+}
