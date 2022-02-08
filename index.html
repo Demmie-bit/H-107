@@ -1,43 +1,73 @@
-
+ 
 <html>
   <head>
-    <title>Sound Identification Web App</title>
+    <title>HAND SIGNS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
   <body>
-    <div>
-      <h1>animal sound identifier</h1>
-      <p>How To Play: play barking or meowing sounds and the website will determine if the sound belomgs to a cat or a dog.</p>
-    </div>
-      <center>
-        <button onclick="startClassification();" class="btn btn-info">START</button>
-        <h2 id="result_label">I can Hear - </h2>
-        <h3 id="Accuracy_label">Accuracy - </h3>
-        <span>
-          <img id="img" src="cat.png">
-          
-        </span>
-      </center>
-      <br>
-      <div>
-        <h1>Developed by - Anwesha</h1>
+  <div class="container">
+  
+    <center>
+      <h3 class="btn btn-warning heading">HAND SIGNS APP
+        <br>
+        <span>&#9996;</span>
+        <span>&#128076;</span>
+        <span>&#128400;</span>
+        
+      </h3>
+      <br><br>
+
+      <p style="font-size: 22px;">Take a picture of your hand to generate emoji
+      	<br>
+        <b style="color: rgb(67, 130, 189)">Peace Sign</b>
+        <br>
+        <b style="color: rgb(67, 130, 189)">Perfect Sign</b>
+        <br>
+        <b style="color: rgb(67, 130, 189)">Normal Hand</b>
+        <br>
+      </p>
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+	      <label>Webcam View - </label>
+        <div id="camera"></div>
+        <br><br>
+        <button onclick="take_snapshot()" class="btn btn-warning heading">Capture Image</button>
       </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <label> Prediction 1 - </label>
+        <p class="emotion_name" id="result_emotion_name"></p>
+        <p class="emoji" id="update_emoji"></p>
+
+        <label> Prediction 2 - </label>
+        <p class="emotion_name" id="result_emotion_name2"></p>
+        <p class="emoji" id="update_emoji2"></p>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+	      <label>Snapshot - </label>
+        <div id="result"></div>
+        <br><br>
+        <button onclick="check()" class="btn btn-success heading">Predict Emotion</button>
+        <br><br>
+
+      </div>
+
+    </center>
+
+  </div>
+
 <script src="main.js"></script>
+
   </body>
 </html>
 
-
-
-
-
-
-
-
  
-

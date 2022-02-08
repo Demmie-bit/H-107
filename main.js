@@ -1,35 +1,35 @@
-function startClassification(){
-    console.log("hello");
-    navigator.mediaDevices.getUserMedia({audio: true, video: false});
-    classifier = ml5.soundClassifier('https://teachablemachine.withgoogle.com/models/XKxR1bUQE/model.json',{probabilityThreshold: 0.7}, modelReady);
-}      
+//
+prediction_1 = "";
+prediction_2 = "";
 
-function modelReady(){
-    classifier.classify(gotResults);
+Webcam.set({
+    width: 350,
+    hieght: 300,
+    image_format: 'png',
+    png_quality: 90
+});
+
+camera = document.getElementById('camera');
+
+Webcam.attach('#camera');
+
+function take_snapshot() {
+    Webcam.snap(function(data_uri){
+        document.getElementById("result").innerHTML = '<img id="captured_image" src="'+ data_uri + '"/>';
+    });
 }
-var dog = 0;
-var cat = 0;
-function gotResults(error, results){
-    if (error) {
-        console.error(error);
-    } else {
-        console.log(results);
-        random_R = Math.floor(Math.random() * 255) + 1;
-        random_G = Math.floor(Math.random() * 255) + 1;
-        random_B = Math.floor(Math.random() * 255) + 1;
-        document.getElementById("result_label").innerHTML='I can hear - ' + results[0].label;
-        document.getElementById("Accuracy_label").innerHTML = 'Accuracy - '+ (results[0].confidence*100).toFixed(2)+" %";
-        document.getElementById("result_label").style.color = "rgb(" + random_R + "," + random_G + "," + random_B + ")";
-        document.getElementById("Accuracy_label").style.color = "rgb(" + random_R + "," + random_G + "," + random_B + ")";
-        img = document.getElementById("img");
-        if (results[0].label== "meowing") {
-            img.src= 'cat.png';
-            cat = cat + 1;
-        } else if (results[0].label== "barking") {
-            img.src= 'dog.png';
-            dog = dog + 1;
-        } else {
-            img.src= 'bn.jpg';
-        }
-    }
+console.log('ml5 version', ml5.version);
+
+Classifier = ml5.imageClassidier('https://teachablemachine.withgoogle.com/models/GLCEFmOca/model.json', modelLoaded);
+
+function modelLoaded(){
+    console.log('model  Loaded');
+}
+
+function speak(){
+    var synth = window.speechSynthesis;
+    speak_data_1 = "The first prediction is" + prediction_1;
+    speak_data_2 = "The second prediction is" + prediction_2;
+    var utterThis = new SpeechSynthesisUtterance(speak_data_1 + speak_data_2);
+    synth.speak(utterThis);
 }
